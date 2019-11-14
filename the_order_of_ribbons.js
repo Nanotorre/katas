@@ -8,15 +8,37 @@ function theOrderOf(ribbons){
   let xObj = {};
   xArr.forEach( ribbon => {
     let numbers=[]
+    let numbersObj= {};
     ribbon.split('').forEach(number => {if(numbers.indexOf(number)<0) numbers.push(number)});
-    console.log(numbers.forEach(n=> xObj[n] = ribbon.split('').filter(x=> x===n).length))
-    xObj[ribbon] = 1;
+    numbers.forEach(n=> numbersObj[n] = ribbon.split('').filter(x=> x===n).length);
+    const highestValue = Object.keys(numbersObj).reduce((a, b) => numbersObj[a] > numbersObj[b] ? a : b);
+    xObj[highestValue]= numbersObj[highestValue];
   })
-  return xObj
+
+  let yObj = {}
+  Array(10).fill(0).map((n,idx)=> idx).forEach(x => yObj[x]=0)
+  let cleanDots = ribbonsArr.map( line => {
+    return line.replace(/\./g,"");
+  })
+  Object.keys(yObj).map(key => {
+    yObj[key]= cleanDots.filter(x=> x.includes(key)).length
+  })
+  let final= []
+  Object.keys(yObj).forEach(key=> {
+      if (!xObj.hasOwnProperty(key) && yObj[key]!==0){
+        final.push([+key, yObj[key]])
+    }
+  })
+  xObj= Object.entries(xObj).map(x=> [x[0]=+x[0], x[1]]).sort((a,b)=> {
+    return a[1]>b[1]? 1:-1;
+  
+  })
+  console.log(final)
+
+
+  return xObj;
   
 }
-
-//incomplete
 
 console.log(theOrderOf(
 `.2.........
