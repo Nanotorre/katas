@@ -37,11 +37,19 @@ function whoIsWinner(piecesPositionList){
         } 
 
     for (let arr of grid) {
-         let "Y", "R";
-        if(arr.forEach(piece=> {
-          if(piece==="Y" && piece
-          
-        }))
+         let Y, R;
+         if(arr[0]==='Y' && arr[1]==='Y' && arr[2]==='Y' && arr[3]==='Y' ||
+            arr[1]==='Y' && arr[2]==='Y' && arr[3]==='Y' && arr[4]==='Y' ||
+            arr[2]==='Y' && arr[3]==='Y' && arr[4]==='Y' && arr[5]==='Y') {
+              return 'Yellow'
+            }
+         if(arr[0]==='R' && arr[1]==='R' && arr[2]==='R' && arr[3]==='R' ||
+            arr[1]==='R' && arr[2]==='R' && arr[3]==='R' && arr[4]==='R' ||
+            arr[2]==='R' && arr[3]==='R' && arr[4]==='R' && arr[5]==='R') {
+              return 'Red'
+            }
+        
+       
     }
 
 
